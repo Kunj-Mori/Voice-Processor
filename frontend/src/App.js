@@ -1506,7 +1506,7 @@ function App() {
       { id: 'system', name: 'System', icon: '🔧' }
     ];
 
-    return (
+  return (
       <div className="p-4">
         {/* Clean Sidebar Navigation */}
         <div className="space-y-2">
@@ -2187,10 +2187,10 @@ function App() {
                       </div>
                       
                       {isVisualizing && (
-                        <div className="flex items-center space-x-2 px-3 py-1 bg-blue-900/30 border border-blue-500/30 rounded">
+                      <div className="flex items-center space-x-2 px-3 py-1 bg-blue-900/30 border border-blue-500/30 rounded">
                           <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
                           <span className="text-xs text-blue-400">Visualizing</span>
-                        </div>
+                      </div>
                       )}
                     </div>
                     
@@ -2252,7 +2252,7 @@ function App() {
                     <div className="mb-6 bg-gray-700 rounded-lg p-4 border border-gray-600">
                       <h4 className="text-lg font-semibold text-white mb-4">Create New Preset</h4>
                       <div className="space-y-4">
-                        <div>
+                          <div>
                           <label className="block text-sm font-medium text-gray-300 mb-2">Preset Name</label>
                           <input
                             type="text"
@@ -2261,7 +2261,7 @@ function App() {
                             placeholder="Enter preset name..."
                             className="w-full p-3 bg-gray-600 rounded-lg border border-gray-500 text-white placeholder-gray-400 focus:border-blue-500"
                           />
-                        </div>
+                          </div>
                         <div>
                           <label className="block text-sm font-medium text-gray-300 mb-2">Description (Optional)</label>
                           <textarea
@@ -2291,7 +2291,7 @@ function App() {
                           </button>
                         </div>
                       </div>
-                    </div>
+                          </div>
                   )}
 
                   {/* Edit Preset Modal */}
@@ -2307,7 +2307,7 @@ function App() {
                             onChange={(e) => setNewPresetName(e.target.value)}
                             className="w-full p-3 bg-gray-600 rounded-lg border border-gray-500 text-white focus:border-blue-500"
                           />
-                        </div>
+                          </div>
                         <div>
                           <label className="block text-sm font-medium text-gray-300 mb-2">Description</label>
                           <textarea
@@ -2316,7 +2316,7 @@ function App() {
                             rows={3}
                             className="w-full p-3 bg-gray-600 rounded-lg border border-gray-500 text-white focus:border-blue-500"
                           />
-                        </div>
+                          </div>
                         <div className="flex gap-3">
                           <button
                             onClick={saveEditedPreset}
@@ -2334,17 +2334,17 @@ function App() {
                           >
                             ❌ Cancel
                           </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
                   )}
 
                   {/* Presets Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {presets.map((preset) => (
                       <div key={preset.id} className="bg-gray-700 rounded-lg p-4 border border-gray-600 hover:border-blue-500/50 transition-all duration-300">
-                        <div className="flex items-start justify-between mb-3">
-                          <div className="flex items-center space-x-2">
+                      <div className="flex items-start justify-between mb-3">
+                        <div className="flex items-center space-x-2">
                             <div className="text-2xl">
                               {preset.settings.voice_effect === 'none' && '🎤'}
                               {preset.settings.voice_effect === 'deep_radio' && '🎮'}
@@ -2354,7 +2354,7 @@ function App() {
                               {preset.settings.voice_effect === 'robotic' && '🤖'}
                               {!['none', 'deep_radio', 'alien', 'female', 'male', 'robotic'].includes(preset.settings.voice_effect) && '🎭'}
                             </div>
-                            <div>
+                          <div>
                               <h4 className="text-white font-semibold text-sm">{preset.name}</h4>
                               <span className={`inline-block text-xs px-2 py-1 rounded-full ${
                                 preset.isDefault 
@@ -2363,9 +2363,9 @@ function App() {
                               }`}>
                                 {preset.isDefault ? 'Default' : 'Custom'}
                               </span>
-                            </div>
                           </div>
-                          <div className="flex space-x-1">
+                        </div>
+                        <div className="flex space-x-1">
                             {!preset.isDefault && (
                               <>
                                 <button 
@@ -2373,8 +2373,8 @@ function App() {
                                   className="text-gray-400 hover:text-blue-400 text-sm transition-colors" 
                                   title="Edit preset"
                                 >
-                                  ✏️
-                                </button>
+                            ✏️
+                          </button>
                                 <button 
                                   onClick={() => updatePreset(preset.id)}
                                   className="text-gray-400 hover:text-green-400 text-sm transition-colors" 
@@ -2400,45 +2400,45 @@ function App() {
                                 🔄
                               </button>
                             )}
-                          </div>
                         </div>
+                      </div>
                         <p className="text-gray-300 text-xs mb-3">{preset.description}</p>
-                        <div className="bg-gray-800 rounded p-3 mb-3">
-                          <h5 className="text-xs font-semibold text-blue-300 mb-2">Settings:</h5>
-                          <div className="grid grid-cols-2 gap-1 text-xs">
-                            <div className="flex justify-between">
-                              <span className="text-gray-400">Effect:</span>
+                      <div className="bg-gray-800 rounded p-3 mb-3">
+                        <h5 className="text-xs font-semibold text-blue-300 mb-2">Settings:</h5>
+                        <div className="grid grid-cols-2 gap-1 text-xs">
+                          <div className="flex justify-between">
+                            <span className="text-gray-400">Effect:</span>
                               <span className="text-white">{preset.settings.voice_effect}</span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span className="text-gray-400">Pitch:</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-400">Pitch:</span>
                               <span className="text-white">{preset.settings.pitch_shift}</span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span className="text-gray-400">Formant:</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-400">Formant:</span>
                               <span className="text-white">{preset.settings.formant_shift}x</span>
-                            </div>
-                            <div className="flex justify-between">
-                              <span className="text-gray-400">Brightness:</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-400">Brightness:</span>
                               <span className="text-white">{preset.settings.brightness}x</span>
-                            </div>
-                            <div className="flex justify-between">
+                          </div>
+                          <div className="flex justify-between">
                               <span className="text-gray-400">Noise Reduction:</span>
                               <span className="text-white">{preset.settings.noise_reduction_enabled ? 'ON' : 'OFF'}</span>
-                            </div>
-                            <div className="flex justify-between">
+                          </div>
+                          <div className="flex justify-between">
                               <span className="text-gray-400">Echo:</span>
                               <span className="text-white">{preset.settings.echo_enabled ? 'ON' : 'OFF'}</span>
-                            </div>
                           </div>
-                        </div>
+                          </div>
+                          </div>
                         <button 
                           onClick={() => loadPreset(preset.id)}
                           className="w-full bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 rounded text-xs font-medium transition-all"
                         >
                           Load Preset
-                        </button>
-                      </div>
+                      </button>
+                    </div>
                     ))}
                   </div>
                 </div>
@@ -2460,7 +2460,7 @@ function App() {
                     </div>
                     <div className="flex gap-2">
                       <label className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all cursor-pointer">
-                        Select Files
+                      Select Files
                         <input
                           type="file"
                           multiple
@@ -2475,7 +2475,7 @@ function App() {
                           className="bg-gray-600 hover:bg-gray-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all"
                         >
                           Clear Queue
-                        </button>
+                    </button>
                       )}
                     </div>
                   </div>
@@ -2502,8 +2502,8 @@ function App() {
 
                   {/* Batch Queue */}
                   {batchFiles.length > 0 && (
-                    <div className="mt-6">
-                      <div className="flex items-center justify-between mb-4">
+                  <div className="mt-6">
+                    <div className="flex items-center justify-between mb-4">
                         <h4 className="text-lg font-semibold text-white">Processing Queue ({batchFiles.length} files)</h4>
                         <div className="flex gap-2">
                           <button
@@ -2526,8 +2526,8 @@ function App() {
                             </button>
                           )}
                         </div>
-                      </div>
-
+                    </div>
+                    
                       {/* Overall Progress */}
                       {batchProcessing && (
                         <div className="mb-4">
@@ -2632,7 +2632,7 @@ function App() {
                               <span className="text-white font-medium">
                                 Batch Job #{job.id.toString().slice(-6)}
                               </span>
-                            </div>
+                  </div>
                             <span className="text-sm text-gray-400">
                               {new Date(job.processedAt).toLocaleString()}
                             </span>

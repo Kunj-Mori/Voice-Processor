@@ -1,5 +1,5 @@
 from fastapi import FastAPI, APIRouter, WebSocket, WebSocketDisconnect, UploadFile, File, HTTPException
-from fastapi.responses import StreamingResponse
+from fastapi.responses import StreamingResponse, FileResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -24,6 +24,7 @@ import scipy.signal
 from scipy import signal
 import subprocess
 import os
+from fastapi.staticfiles import StaticFiles
 
 # Import enhanced voice processor (simplified version)
 try:
@@ -82,6 +83,7 @@ if not ENHANCED_PROCESSOR_AVAILABLE:
     virtual_device = SimpleVirtualDevice()
 
 ROOT_DIR = Path(__file__).parent
+FRONTEND_BUILD_DIR = ROOT_DIR.parent / "frontend" / "build"
 load_dotenv(ROOT_DIR / '.env')
 
 # MongoDB connection with error handling
@@ -105,6 +107,17 @@ except Exception as e:
 
 # Create the main app without a prefix
 app = FastAPI()
+# Serve React build static files
+if FRONTEND_BUILD_DIR.exists():
+    app.mount("/", StaticFiles(directory=FRONTEND_BUILD_DIR, html=True), name="static")
+
+    # Support client-side routing by falling back to index.html for non-API/non-static routes
+    @app.exception_handler(404)
+    async def custom_404_handler(request, exc):
+        requested_path = FRONTEND_BUILD_DIR / request.url.path.lstrip("/")
+        if not requested_path.exists() and not request.url.path.startswith("/api"):
+            return FileResponse(FRONTEND_BUILD_DIR / "index.html")
+        return await app.default_exception_handler(request, exc)
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")

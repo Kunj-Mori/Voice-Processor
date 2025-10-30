@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: voice-processor-backend
+    env: python
+    plan: free
+    rootDir: backend
+    buildCommand: ./render-build.sh
+    startCommand: uvicorn server:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    autoDeploy: true

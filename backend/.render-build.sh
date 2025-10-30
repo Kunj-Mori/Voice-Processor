@@ -1,9 +1,11 @@
 #!/bin/bash
 set -e
 
-# Install system dependencies required for PyAudio
-apt-get update && apt-get install -y portaudio19-dev
+echo "🔧 Installing system dependencies..."
+apt-get update
+apt-get install -y portaudio19-dev gcc libasound-dev
 
-# Install Python dependencies
+echo "🐍 Installing Python dependencies..."
 pip install --upgrade pip
+pip install wheel setuptools
 pip install -r requirements.txt

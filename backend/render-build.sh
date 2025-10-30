@@ -1,7 +1,13 @@
 #!/bin/bash
 set -e
 
-echo "🐍 Installing Python dependencies..."
+# Install system dependencies for PyAudio and audio processing
+if [ -f "apt.txt" ]; then
+  echo "🔧 Installing system dependencies..."
+  xargs -a apt.txt apt-get install -y
+fi
+
+# Upgrade pip and install Python dependencies
+echo "📦 Installing Python dependencies..."
 pip install --upgrade pip
-pip install wheel setuptools
 pip install -r requirements.txt
